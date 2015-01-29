@@ -1,0 +1,17 @@
+{
+  "gruntConfig": {
+    "buildTarget": "target/webapp/plugin",
+    "pluginDir": "src/main/resources-plugin"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.0",
+    "grunt-cli": "~0.1.0",
+    "grunt-contrib-clean": "~0.5.0",
+    "grunt-contrib-requirejs": "*",
+    "grunt-contrib-watch": "~0.5.0",
+    "load-grunt-tasks": "0.4.0",
+    "requirejs": "~2.1.0",
+    "requirejs-angular-define": "git://github.com/camunda/requirejs-angular-define.git",
+    "requirejs-text": "^2.0.12"
+  }
+}

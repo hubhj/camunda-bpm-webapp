@@ -4,17 +4,14 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.camunda.bpm.webapp</groupId>
   <artifactId>camunda-webapp-root</artifactId>
-  <version>7.3.0-SNAPSHOT</version>
   <packaging>pom</packaging>
   <name>camunda BPM - webapp - root</name>
 
-  <!-- camunda BPM parent release pom -->
   <parent>
-    <groupId>org.camunda</groupId>
-    <artifactId>camunda-release-parent</artifactId>
-    <version>2.5</version>
-    <!-- do not remove empty tag - http://jira.codehaus.org/browse/MNG-4687 -->
-    <relativePath />
+    <groupId>org.camunda.bpm</groupId>
+    <artifactId>camunda-database-settings</artifactId>
+    <version>7.3.0-SNAPSHOT</version>
+    <relativePath>../camunda-bpm-platform/database</relativePath>
   </parent>
 
   <profiles>
@@ -53,7 +50,7 @@
     </profile>
   </profiles>
 
-  <properties> 
+  <properties>
     <version.tomcat>7.0.50</version.tomcat>
     <tomcat6.connector.http.port>48080</tomcat6.connector.http.port>
     <tomcat6.connector.http.redirectPort>48443</tomcat6.connector.http.redirectPort>
@@ -64,13 +61,6 @@
 
   <dependencyManagement>
     <dependencies>
-      <dependency>
-        <groupId>org.camunda.bpm</groupId>
-        <artifactId>camunda-parent</artifactId>
-        <version>${project.version}</version>
-        <scope>import</scope>
-        <type>pom</type>
-      </dependency>
       <dependency>
         <groupId>org.camunda.bpm.webapp</groupId>
         <artifactId>camunda-webapp-core</artifactId>
@@ -133,15 +123,29 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-antrun-plugin</artifactId>
-          <version>1.7</version>
+          <version>1.8</version>
         </plugin>
         <plugin>
           <groupId>org.codehaus.mojo</groupId>
           <artifactId>build-helper-maven-plugin</artifactId>
-          <version>1.7</version>
+          <version>1.9.1</version>
         </plugin>
       </plugins>
     </pluginManagement>
   </build>
+
+  <repositories>
+    <repository>
+      <id>camunda-nexus</id>
+      <name>camunda BPM Maven Repository</name>
+      <url>https://app.camunda.com/nexus/content/groups/public</url>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+    </repository>
+  </repositories>
 
 </project>
