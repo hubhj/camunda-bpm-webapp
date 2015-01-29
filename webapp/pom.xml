@@ -22,6 +22,7 @@
 
     <frontend.development.cockpit.path>${frontend.app.path}</frontend.development.cockpit.path>
     <frontend.development.tasklist.path>${frontend.app.path}</frontend.development.tasklist.path>
+    <frontend.development.datalist.path>${frontend.app.path}</frontend.development.datalist.path>
     <frontend.development.admin.path>${frontend.app.path}</frontend.development.admin.path>
 
     <exec.shell>bash</exec.shell>
@@ -45,6 +46,15 @@
       <type>zip</type>
       <scope>provided</scope>
     </dependency>
+
+      <!-- the datalist UI -->
+      <dependency>
+          <groupId>com.incedure.bpm.webapp</groupId>
+          <artifactId>incedure-datalist-ui</artifactId>
+          <version>${project.version}</version>
+          <type>zip</type>
+          <scope>provided</scope>
+      </dependency>
 
     <!-- the cockpit UI -->
     <dependency>
@@ -227,6 +237,13 @@
                   <outputDirectory>${project.build.directory}/webapp/app/tasklist</outputDirectory>
                 </artifactItem>
                 <artifactItem>
+                  <groupId>com.incedure.bpm.webapp</groupId>
+                  <artifactId>incedure-datalist-ui</artifactId>
+                  <type>zip</type>
+                  <overWrite>true</overWrite>
+                  <outputDirectory>${project.build.directory}/webapp/app/datalist</outputDirectory>
+                </artifactItem>
+                <artifactItem>
                   <groupId>org.camunda.bpm.webapp</groupId>
                   <artifactId>camunda-cockpit-ui</artifactId>
                   <type>zip</type>
@@ -318,6 +335,7 @@
       <id>livereload</id>
       <properties>
         <frontend.development.tasklist.path>../../camunda-tasklist-ui/dist</frontend.development.tasklist.path>
+        <frontend.development.datalist.path>../../incedure-datalist-ui/dist</frontend.development.datalist.path>
         <frontend.development.admin.path>../../camunda-admin-ui/dist</frontend.development.admin.path>
         <frontend.development.cockpit.path>../../camunda-cockpit-ui/dist</frontend.development.cockpit.path>
       </properties>
@@ -403,6 +421,7 @@
                   <resourceBase>${project.basedir}/src/main/webapp</resourceBase>
                   <resourceBase>${frontend.development.cockpit.path}</resourceBase>
                   <resourceBase>${frontend.development.tasklist.path}</resourceBase>
+                  <resourceBase>${frontend.development.datalist.path}</resourceBase>
                   <resourceBase>${frontend.development.admin.path}</resourceBase>
                 </resourceBases>
               </webAppConfig>

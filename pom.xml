@@ -27,8 +27,9 @@
 
         <module>core</module>
         <module>webapp</module>
+<!--
         <module>test-utility</module>
-
+-->
       </modules>
     </profile>
 
@@ -38,14 +39,16 @@
         <activeByDefault>true</activeByDefault>
       </activation>
       <modules>
-
+<!--
         <module>distro/jboss</module>
         <module>distro/jboss-standalone</module>
+        -->
         <module>distro/tomcat</module>
         <module>distro/tomcat-standalone</module>
-        <module>distro/glassfish</module>
+        <!--
+          <module>distro/glassfish</module>
         <module>distro/glassfish-standalone</module>
-
+-->
       </modules>
     </profile>
   </profiles>

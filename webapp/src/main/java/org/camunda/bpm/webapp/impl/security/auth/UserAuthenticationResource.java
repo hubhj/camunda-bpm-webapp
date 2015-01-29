@@ -43,6 +43,7 @@ import org.camunda.bpm.engine.rest.spi.ProcessEngineProvider;
  * Jax-Rs resource allowing users to authenticate with username and password</p>
  *
  * @author Daniel Meyer
+ * @author Hagen Jung
  *
  */
 @Path(UserAuthenticationResource.PATH)
@@ -50,7 +51,7 @@ public class UserAuthenticationResource {
 
   public static final String PATH = "/auth/user";
 
-  private static final String[] APPS = new String[] { "cockpit", "tasklist" };
+  private static final String[] APPS = new String[] {  "aufgaben", "daten", "prozesse" };
 
   @Context
   protected HttpServletRequest request;
@@ -112,7 +113,7 @@ public class UserAuthenticationResource {
       // check user's app authorizations
       AuthorizationService authorizationService = processEngine.getAuthorizationService();
 
-      HashSet<String> authorizedApps = new HashSet<String>();
+      HashSet<String> authorizedApps = new HashSet<>();
       authorizedApps.add("admin");
 
       if (processEngine.getProcessEngineConfiguration().isAuthorizationEnabled()) {

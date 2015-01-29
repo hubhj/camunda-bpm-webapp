@@ -4,6 +4,7 @@ This folder contains the sources of the camunda web application. The application
 
 -   __cockpit__, a process monitoring tool
 -   __tasklist__, a simple task list
+-   __datalist__, a simple data list
 -   __admin__, a administration interface
 
 
@@ -165,7 +166,7 @@ To test the integration, you will need to have a [running instance](#development
 grunt test:e2e
 ```
 
-If you want to run a specific set of tests (available sets are: `admin`, `cockpit` and `tasklist`), you can run the following command:
+If you want to run a specific set of tests (available sets are: `admin`, `cockpit`, `tasklist` and `datalist`), you can run the following command:
 
 ```
 grunt test:e2e:<set name>

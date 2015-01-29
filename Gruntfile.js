@@ -6,7 +6,7 @@ var spawn = require('child_process').spawn;
 
 
 function testOnline(done) {
-  http.get('http://localhost:8080/camunda/app/tasklist/default', function(res) {
+  http.get('http://localhost:8081/engine/app/aufgaben/kita', function(res) {
     done(res.statusCode !== 200 ? new Error('The status code is not 200') : null);
   })
   .on('error', done);
@@ -36,7 +36,7 @@ function clone(project) {
     cmd: 'git',
     args: [
       'clone',
-      'git@github.com:camunda/'+ project +'.git',
+      'git@github.com:hubhj/'+ project +'.git'
     ]
   };
 }
@@ -53,7 +53,7 @@ function linkFrom(project) {
   };
 }
 
-function bonerInstall(project) {
+function bowerInstall(project) {
   return {
     opts: {
       cwd: __dirname +'/../'+ project
@@ -90,7 +90,7 @@ module.exports = function(grunt) {
     'install',
     'jetty:run',
     '-DskipTests',
-    '-Pdevelop,livereload',
+    '-Pdevelop,livereload'
   ];
 
   if (!mvnUpdate) {
@@ -126,6 +126,7 @@ module.exports = function(grunt) {
           clone('camunda-admin-ui'),
           clone('camunda-cockpit-ui'),
           clone('camunda-tasklist-ui'),
+          clone('incedure-datalist-ui'),
           clone('camunda-cockpit-plugin-base')
         ]
       },
@@ -140,6 +141,7 @@ module.exports = function(grunt) {
           linkFrom('camunda-admin-ui'),
           linkFrom('camunda-cockpit-ui'),
           linkFrom('camunda-tasklist-ui'),
+          linkFrom('camunda-datalist-ui')
           // linkFrom('camunda-cockpit-plugin-base')
         ]
       },
@@ -149,12 +151,13 @@ module.exports = function(grunt) {
           stream: true
         },
         tasks: [
-          // bonerInstall('camunda-bpm-sdk-js'),
-          // bonerInstall('camunda-commons-ui'),
-          bonerInstall('camunda-admin-ui'),
-          bonerInstall('camunda-cockpit-ui'),
-          bonerInstall('camunda-tasklist-ui'),
-          // bonerInstall('camunda-cockpit-plugin-base')
+          // bowerInstall('camunda-bpm-sdk-js'),
+          // bowerInstall('camunda-commons-ui'),
+          bowerInstall('camunda-admin-ui'),
+          bowerInstall('camunda-cockpit-ui'),
+          bowerInstall('camunda-tasklist-ui'),
+          bowerInstall('incedure-datalist-ui')
+          // bowerInstall('camunda-cockpit-plugin-base')
         ]
       },
 
@@ -168,6 +171,7 @@ module.exports = function(grunt) {
           linkTo('camunda-admin-ui'),
           linkTo('camunda-cockpit-ui'),
           linkTo('camunda-tasklist-ui'),
+          linkTo('incedure-datalist-ui')
           // linkTo('camunda-cockpit-plugin-base')
         ]
       },
@@ -189,6 +193,7 @@ module.exports = function(grunt) {
           autoBuild('camunda-admin-ui', verbose, stack),
           autoBuild('camunda-cockpit-ui', verbose, stack),
           autoBuild('camunda-tasklist-ui', verbose, stack),
+          autoBuild('camunda-datalist-ui', verbose, stack),
           {
             cmd: 'webdriver-manager',
             args: ['start']
@@ -215,7 +220,7 @@ module.exports = function(grunt) {
   if (!skipTests) {
     config.watch.targetAdmin = {
       options: {
-        debounceDelay: 1000,
+        debounceDelay: 1000
       },
       files: [
         'webapp/src/test/js/e2e/admin/**/*.js',
@@ -231,7 +236,7 @@ module.exports = function(grunt) {
 
     config.watch.targetCockpit = {
       options: {
-        debounceDelay: 1000,
+        debounceDelay: 1000
       },
       files: [
         'webapp/src/test/js/e2e/cockpit/**/*.js',
@@ -247,7 +252,7 @@ module.exports = function(grunt) {
 
     config.watch.targetTasklist = {
       options: {
-        debounceDelay: 1000,
+        debounceDelay: 1000
       },
       files: [
         'webapp/src/test/js/e2e/tasklist/**/*.js',
@@ -260,6 +265,20 @@ module.exports = function(grunt) {
         'test:tasklist'
       ]
     };
+
+      config.watch.targetDatalist = {
+          options: {
+              debounceDelay: 1000
+          },
+          files: [
+              'webapp/src/test/js/e2e/datalist/**/*.js',
+              '../incedure-datalist-ui/dist/app/datalist/**/*.{js,html}',
+              '!../incedure-datalist-ui/dist/app/datalist/vendor/**'
+          ],
+          tasks: [
+              'test:tasklist'
+          ]
+      };
   }
 
   grunt.initConfig(config);
