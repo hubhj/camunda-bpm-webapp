@@ -10,7 +10,6 @@
   </parent>
 
   <artifactId>camunda-webapp</artifactId>
-  <groupId>org.camunda.bpm.webapp</groupId>
   <packaging>war</packaging>
   <name>camunda BPM - webapp - app</name>
 
@@ -393,9 +392,9 @@
       <build>
         <plugins>
           <plugin>
-            <groupId>org.mortbay.jetty</groupId>
+            <groupId>org.eclipse.jetty</groupId>
             <artifactId>jetty-maven-plugin</artifactId>
-            <version>8.1.14.v20131031</version>
+            <version>9.2.6.v20141205</version>
             <configuration>
               <webAppConfig>
                 <contextPath>/camunda</contextPath>
@@ -462,6 +461,7 @@
       <build>
         <plugins>
           <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-antrun-plugin</artifactId>
             <!--
               only worked with this version, there might be a bug with antrun
